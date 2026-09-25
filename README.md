@@ -1,4 +1,4 @@
-# reference3d
+# Reference 3D
 
 Ferramenta de estudo de desenho: um manequim 3D posável de um lado, uma prancheta de
 desenho do outro. Você gira a câmera em volta do boneco, ajusta a pose e desenha a
@@ -10,12 +10,20 @@ Sites de referência para desenho normalmente entregam fotos estáticas. O ângu
 você precisa nunca é o que está disponível, e alternar entre a referência e o papel
 quebra o ritmo do estudo.
 
+<img width="1430" height="825" alt="image" src="https://github.com/user-attachments/assets/c37b7e6c-9679-484c-b7e4-0113227feb5c" />
+
+
 O reference3d resolve isso com um manequim construído a partir de primitivas (cápsulas
 e esferas) que você posa diretamente: clica numa articulação e arrasta. A câmera orbita
 livremente, então qualquer ângulo é acessível. E o painel de desenho fica lado a lado,
 com um divisor arrastável para você equilibrar o espaço entre estudar a pose e desenhar.
 
 Nada sai do navegador — não há conta, upload ou servidor envolvido no desenho.
+
+<img width="1618" height="910" alt="image" src="https://github.com/user-attachments/assets/5c1703e6-4506-451b-ab30-8918c408ad83" />
+
+
+
 
 ## Como funciona
 
