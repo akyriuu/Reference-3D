@@ -1,3 +1,5 @@
+import { useState } from 'react'
+import type { SavedPose } from './savedPoses'
 import { PRESETS, SKELETON, type HandId, type HandPose, type JointName, type PresetName } from './skeleton'
 
 type Props = {
@@ -8,6 +10,10 @@ type Props = {
   onHand: (id: HandId, patch: Partial<HandPose>) => void
   onApply: (name: PresetName) => void
   onReset: () => void
+  saved: SavedPose[]
+  onSave: (name: string) => SavedPose | null
+  onRestore: (saved: SavedPose) => void
+  onRemove: (id: string) => void
 }
 
 const ORDER: PresetName[] = ['repouso', 'tpose', 'contraposto', 'corrida', 'sentado']
@@ -31,13 +37,31 @@ export function PosePanel({
   onHand,
   onApply,
   onReset,
+  saved,
+  onSave,
+  onRestore,
+  onRemove,
 }: Props) {
+  const [name, setName] = useState('')
+  const [notice, setNotice] = useState<string | null>(null)
+
+  const submit = (event: React.FormEvent) => {
+    event.preventDefault()
+    const result = onSave(name)
+    if (!result) {
+      setNotice('Dê um nome à pose')
+      return
+    }
+    setNotice(`Salva: ${result.name}`)
+    setName('')
+  }
+
   return (
     <div className="pose-panel">
       <div className="pose-presets">
-        {ORDER.map((name) => (
-          <button key={name} onClick={() => onApply(name)}>
-            {PRESETS[name].label}
+        {ORDER.map((preset) => (
+          <button key={preset} onClick={() => onApply(preset)}>
+            {PRESETS[preset].label}
           </button>
         ))}
         <button onClick={onReset}>Zerar</button>
@@ -48,6 +72,35 @@ export function PosePanel({
           Juntas finas
         </button>
       </div>
+
+      <form className="pose-save" onSubmit={submit}>
+        <input
+          type="text"
+          value={name}
+          maxLength={48}
+          placeholder="Nome da pose"
+          onChange={(event) => {
+            setName(event.target.value)
+            setNotice(null)
+          }}
+        />
+        <button type="submit">Salvar</button>
+      </form>
+
+      {saved.length > 0 && (
+        <ul className="pose-saved">
+          {saved.map((entry) => (
+            <li key={entry.id}>
+              <button className="pose-saved-name" onClick={() => onRestore(entry)}>
+                {entry.name}
+              </button>
+              <button className="pose-saved-remove" onClick={() => onRemove(entry.id)}>
+                Apagar
+              </button>
+            </li>
+          ))}
+        </ul>
+      )}
 
       <div className="pose-hands">
         {(['handR', 'handL'] as HandId[]).map((id) => (
@@ -71,11 +124,12 @@ export function PosePanel({
       </div>
 
       <p className="pose-status">
-        {selected
-          ? `${SKELETON[selected].label} · arraste ↕ / ↔`
-          : fineJoints
-            ? 'Clavícula, pulso, tornozelo e pescoço visíveis'
-            : 'Clique numa esfera para posar · Juntas finas mostra o resto'}
+        {notice
+          ?? (selected
+            ? `${SKELETON[selected].label} · arraste ↕ / ↔`
+            : fineJoints
+              ? 'Clavícula, pulso, tornozelo e pescoço visíveis'
+              : 'Clique numa esfera para posar · Juntas finas mostra o resto')}
       </p>
     </div>
   )

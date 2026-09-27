@@ -1,4 +1,5 @@
 import { useCallback, useState } from 'react'
+import type { SavedPose } from './savedPoses'
 import {
   buildHands,
   buildPose,
@@ -40,6 +41,12 @@ export function usePose() {
     setLift(preset.lift ?? 0)
   }, [])
 
+  const restore = useCallback((saved: SavedPose) => {
+    setPose(buildPose(saved.pose))
+    setHands(buildHands(saved.hands))
+    setLift(saved.lift)
+  }, [])
+
   const reset = useCallback(() => {
     setPose(REST_POSE)
     setHands(REST_HANDS)
@@ -47,5 +54,5 @@ export function usePose() {
     setSelected(null)
   }, [])
 
-  return { pose, hands, lift, selected, rotate, setHand, select, apply, reset }
+  return { pose, hands, lift, selected, rotate, setHand, select, apply, restore, reset }
 }

@@ -4,11 +4,13 @@ import { ContactShadows, Grid, OrbitControls } from '@react-three/drei'
 import { Mannequin } from './Mannequin'
 import { PosePanel } from './PosePanel'
 import { usePose } from './usePose'
+import { useSavedPoses } from './useSavedPoses'
 
 const GROUND = -0.92
 
 export function Viewport() {
-  const { pose, hands, lift, selected, rotate, setHand, select, apply, reset } = usePose()
+  const { pose, hands, lift, selected, rotate, setHand, select, apply, restore, reset } = usePose()
+  const { entries, save, remove } = useSavedPoses()
   const [fineJoints, setFineJoints] = useState(false)
 
   return (
@@ -70,6 +72,10 @@ export function Viewport() {
         onHand={setHand}
         onApply={apply}
         onReset={reset}
+        saved={entries}
+        onSave={(name) => save(name, { pose, hands, lift })}
+        onRestore={restore}
+        onRemove={remove}
       />
     </div>
   )
