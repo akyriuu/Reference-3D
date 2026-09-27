@@ -187,7 +187,7 @@ Para rodar como em produção, com o Nest servindo o build:
       e atribuição de autoria, para o acervo crescer de forma colaborativa. É o primeiro
       recurso que exige de fato o backend: upload, armazenamento, moderação e
       persistência das tags.
-- [ ] **Mais juntas no manequim** — pescoço separado da cabeça, coluna em dois ou três
+- [ FEITO ] **Mais juntas no manequim** — pescoço separado da cabeça, coluna em dois ou três
       segmentos, pulsos, tornozelos, clavículas e dedos simplificados, para poses com
       leitura anatômica melhor.
 - [ ] **Personalização do manequim** — proporções ajustáveis (altura, largura de ombro e
