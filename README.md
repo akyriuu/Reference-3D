@@ -10,6 +10,9 @@ Sites de referência para desenho normalmente entregam fotos estáticas. O ângu
 você precisa nunca é o que está disponível, e alternar entre a referência e o papel
 quebra o ritmo do estudo.
 
+<img width="590" height="537" alt="image" src="https://github.com/user-attachments/assets/8a70f066-7a37-4b08-842d-d1245d3e8676" />
+
+
 <img width="1430" height="825" alt="image" src="https://github.com/user-attachments/assets/c37b7e6c-9679-484c-b7e4-0113227feb5c" />
 
 
@@ -20,7 +23,10 @@ com um divisor arrastável para você equilibrar o espaço entre estudar a pose 
 
 Nada sai do navegador — não há conta, upload ou servidor envolvido no desenho.
 
+
 <img width="1618" height="910" alt="image" src="https://github.com/user-attachments/assets/5c1703e6-4506-451b-ab30-8918c408ad83" />
+
+<img width="378" height="481" alt="image" src="https://github.com/user-attachments/assets/a64bf3ca-2afe-4077-8842-abda21dee842" />
 
 
 
