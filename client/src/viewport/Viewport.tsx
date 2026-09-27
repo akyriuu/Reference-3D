@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Canvas } from '@react-three/fiber'
 import { ContactShadows, Grid, OrbitControls } from '@react-three/drei'
 import { Mannequin } from './Mannequin'
@@ -7,7 +8,8 @@ import { usePose } from './usePose'
 const GROUND = -0.92
 
 export function Viewport() {
-  const { pose, lift, selected, rotate, select, apply, reset } = usePose()
+  const { pose, hands, lift, selected, rotate, setHand, select, apply, reset } = usePose()
+  const [fineJoints, setFineJoints] = useState(false)
 
   return (
     <div className="viewport">
@@ -34,6 +36,8 @@ export function Viewport() {
           selected={selected}
           onSelect={select}
           onRotate={rotate}
+          fineJoints={fineJoints}
+          hands={hands}
         />
 
         <ContactShadows position={[0, GROUND, 0]} opacity={0.45} blur={2.5} scale={6} far={2.5} />
@@ -58,7 +62,15 @@ export function Viewport() {
         />
       </Canvas>
 
-      <PosePanel selected={selected} onApply={apply} onReset={reset} />
+      <PosePanel
+        selected={selected}
+        fineJoints={fineJoints}
+        onFineJoints={setFineJoints}
+        hands={hands}
+        onHand={setHand}
+        onApply={apply}
+        onReset={reset}
+      />
     </div>
   )
 }

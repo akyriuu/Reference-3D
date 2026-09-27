@@ -62,7 +62,6 @@ body.is-resizing {
   color: var(--muted);
 }
 
-/* ---------- split ---------- */
 .split {
   display: flex;
   flex: 1;
@@ -88,7 +87,6 @@ body.is-resizing {
   background: var(--accent);
 }
 
-/* ---------- drawing ---------- */
 .drawing {
   display: flex;
   flex-direction: column;
@@ -190,7 +188,7 @@ body.is-resizing {
   display: block;
   width: 100%;
   height: 100%;
-  touch-action: none; /* sem isso o arraste rola a página em vez de desenhar */
+  touch-action: none;
   cursor: crosshair;
 }
 
@@ -198,7 +196,6 @@ body.is-resizing {
   cursor: cell;
 }
 
-/* ---------- viewport 3D ---------- */
 .viewport {
   position: relative;
   flex: 1;
@@ -240,8 +237,44 @@ body.is-resizing {
   border-color: var(--accent);
 }
 
+.pose-presets button.is-active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #0d1017;
+}
+
 .pose-status {
   margin: 0;
   font-size: 11px;
   color: var(--muted);
+}
+
+.pose-hands {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px 14px;
+}
+
+.pose-hand {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.pose-hand span {
+  color: var(--text);
+  font-size: 12px;
+}
+
+.pose-hand label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.pose-hand input[type='range'] {
+  flex: 1;
+  min-width: 0;
 }
