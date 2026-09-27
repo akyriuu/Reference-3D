@@ -15,6 +15,11 @@ quebra o ritmo do estudo.
 
 <img width="1430" height="825" alt="image" src="https://github.com/user-attachments/assets/c37b7e6c-9679-484c-b7e4-0113227feb5c" />
 
+<img width="509" height="312" alt="image" src="https://github.com/user-attachments/assets/e5a391e8-9dc8-4876-9103-6f2aec3c138f" />
+
+<img width="319" height="291" alt="image" src="https://github.com/user-attachments/assets/a7a4e33c-04c2-4617-9ce5-1b4002104703" />
+
+
 
 O reference3d resolve isso com um manequim construído a partir de primitivas (cápsulas
 e esferas) que você posa diretamente: clica numa articulação e arrasta. A câmera orbita
