@@ -355,3 +355,127 @@ body.is-resizing {
   color: #e6e8ec;
   border-color: #b03a2e;
 }
+
+.login-boot {
+  display: grid;
+  place-items: center;
+  height: 100%;
+  color: var(--muted);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: 11px;
+}
+
+.login {
+  position: relative;
+  display: grid;
+  place-items: center;
+  height: 100%;
+  overflow: hidden;
+  background: #0e1014;
+}
+
+.login-stage {
+  position: absolute;
+  inset: 12% 42% auto auto;
+  width: 38vmin;
+  height: 64vmin;
+  background:
+    radial-gradient(circle at 35% 30%, #2a3140 0%, transparent 55%),
+    linear-gradient(160deg, #1a1e27, #0e1014);
+  border: 1px solid #2b303a;
+  transform: rotate(18deg);
+  opacity: 0.55;
+}
+
+.login-card {
+  position: relative;
+  width: min(420px, calc(100% - 40px));
+  padding: 36px 32px 28px;
+  background: rgba(20, 22, 27, 0.92);
+  border: 1px solid var(--border);
+  border-radius: 4px 18px 4px 18px;
+}
+
+.login-kicker {
+  margin: 0 0 10px;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.login h1 {
+  margin: 0 0 10px;
+  font-size: 28px;
+  font-weight: 560;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+}
+
+.login-lead,
+.login-empty {
+  margin: 0 0 22px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.login-providers {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.login-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  color: inherit;
+  text-decoration: none;
+  background: #181b22;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.login-btn strong {
+  display: block;
+  font-size: 13px;
+}
+
+.login-btn small {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.login-btn:hover {
+  border-color: var(--accent);
+}
+
+.app-user {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+}
+
+.app-user img {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.app-user button {
+  padding: 4px 8px;
+  color: var(--muted);
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  cursor: pointer;
+}
