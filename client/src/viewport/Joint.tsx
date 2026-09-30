@@ -85,7 +85,7 @@ export function Joint({
         >
           <sphereGeometry args={[handle, 16, 16]} />
           <meshBasicMaterial
-            color={isSelected ? '#6c8cff' : hovered ? '#ffd166' : '#ffffff'}
+            color={isSelected ? '#ffffff' : hovered ? '#d1d1d6' : '#f5f5f7'}
             transparent
             opacity={isSelected || hovered ? 0.9 : 0.3}
             depthTest={false}

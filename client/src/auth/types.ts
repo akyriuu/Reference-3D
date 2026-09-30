@@ -1,11 +1,16 @@
-export type OAuthProvider = 'google' | 'discord' | 'apple'
+export type AuthProviderName = 'local' | 'google' | 'discord'
+
+export type OAuthProvider = 'google' | 'discord'
 
 export type AuthUser = {
   id: string
-  provider: OAuthProvider
+  provider: AuthProviderName
   email: string | null
   name: string
   avatar: string | null
 }
 
-export type AuthProviders = Record<OAuthProvider, boolean>
+export type AuthProviders = {
+  google: boolean
+  discord: boolean
+}

@@ -1,9 +1,11 @@
-import { Controller, Get, Post, Req, Res, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Post, Req, Res, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import type { Request, Response } from 'express';
 import { AuthService } from './auth.service';
+import type { AuthProvider, AuthUser } from './auth.types';
+import { LoginDto } from './dto/login.dto';
+import { RegisterDto } from './dto/register.dto';
 import { JwtAuthGuard } from './jwt-auth.guard';
-import type { AuthUser, OAuthProvider } from './auth.types';
 
 @Controller('api/auth')
 export class AuthController {
@@ -26,6 +28,20 @@ export class AuthController {
     res.json({ ok: true });
   }
 
+  @Post('register')
+  async register(@Body() dto: RegisterDto, @Res() res: Response) {
+    const user = await this.auth.register(dto);
+    this.auth.attachSession(res, user);
+    res.json(this.auth.toPublic(user));
+  }
+
+  @Post('login')
+  async login(@Body() dto: LoginDto, @Res() res: Response) {
+    const user = await this.auth.login(dto);
+    this.auth.attachSession(res, user);
+    res.json(this.auth.toPublic(user));
+  }
+
   @Get('google')
   @UseGuards(AuthGuard('google'))
   google() {}
@@ -46,7 +62,7 @@ export class AuthController {
     return this.finish(req, res, 'discord');
   }
 
-  private finish(req: Request, res: Response, provider: OAuthProvider) {
+  private finish(req: Request, res: Response, provider: AuthProvider) {
     this.auth.attachSession(res, req.user as AuthUser);
     res.redirect(this.auth.clientRedirect(provider));
   }

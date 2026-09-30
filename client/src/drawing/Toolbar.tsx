@@ -15,7 +15,7 @@ type Props = {
   onExport: () => void
 }
 
-const SWATCHES = ['#1b1b1f', '#6b6b76', '#b03a2e', '#1f6f8b', '#2e7d32']
+const SWATCHES = ['#111111', '#6e6e73', '#c7c7cc', '#ffffff']
 
 export function Toolbar({
   tool,

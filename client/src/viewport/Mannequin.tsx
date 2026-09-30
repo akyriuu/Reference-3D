@@ -3,7 +3,7 @@ import { Joint, type PoseControls } from './Joint'
 import { FIGURE_RIG, localOf, type RigNode, type RigPart, type Vec3 } from './rig'
 import { SKELETON, type HandId, type HandPose } from './skeleton'
 
-const SKIN = '#d9d2c7'
+const SKIN = '#d2d2d7'
 const ROOT: Vec3 = [0, 0, 0]
 
 export type MannequinControls = PoseControls & {

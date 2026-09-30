@@ -21,7 +21,8 @@ export function Viewport() {
         camera={{ position: [0, 0.55, 3.4], fov: 45 }}
         onPointerMissed={() => select(null)}
       >
-        <color attach="background" args={['#14161b']} />
+        <color attach="background" args={['#000000']} />
+
 
         <ambientLight intensity={0.55} />
         <directionalLight
@@ -30,7 +31,8 @@ export function Viewport() {
           castShadow
           shadow-mapSize={[1024, 1024]}
         />
-        <directionalLight position={[-4, 2, -3]} intensity={0.55} color="#8fa7ff" />
+        <directionalLight position={[-4, 2, -3]} intensity={0.4} color="#ffffff" />
+
 
         <Mannequin
           pose={pose}
@@ -49,8 +51,8 @@ export function Viewport() {
           fadeDistance={22}
           cellSize={0.25}
           sectionSize={1}
-          cellColor="#262b35"
-          sectionColor="#39404f"
+          cellColor="#1c1c1e"
+          sectionColor="#3a3a3c"
         />
 
         <OrbitControls

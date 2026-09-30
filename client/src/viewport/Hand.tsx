@@ -1,6 +1,7 @@
 import type { HandPose } from './skeleton'
 
-const SKIN = '#d9d2c7'
+const SKIN = '#d2d2d7'
+
 
 type DigitProps = {
   position: [number, number, number]
