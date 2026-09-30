@@ -86,6 +86,17 @@ esse cache mais o traço em andamento, em vez de repintar o desenho inteiro.
   que a borracha apague tinta em vez de furar o fundo.
 - Canvas ajustado ao `devicePixelRatio`, sem traço borrado em telas de alta densidade.
 
+### Tela de login, registro de conta e futuro.
+
+Tela de login e registro manual, acompanhado de registro via Google e Discord, implementados, juntamente com um redesign das cores do site e identidade visual.
+Essa mudança e criação de feature é mandatória para os planos futuros do projeto, envolvendo postagen de imagens, desenhos e compartilhamento de poses entre a comunidade.
+
+<img width="775" height="439" alt="image" src="https://github.com/user-attachments/assets/3a13114b-d748-4fc3-ac43-22818f2165d1" />
+
+<img width="762" height="458" alt="image" src="https://github.com/user-attachments/assets/f3cb8304-4314-49fd-82a3-ebe1a26b8de6" />
+
+
+
 ### Backend
 
 - Serve o build do frontend em produção.
@@ -181,18 +192,25 @@ Para rodar como em produção, com o Nest servindo o build:
 - [ ] **Referências 2D** — biblioteca de imagens de referência (fotos de pose, anatomia,
       panos, mãos) exibíveis no viewport ao lado do manequim, para cruzar o boneco com
       referência real.
+      
 - [ ] **Barra de pesquisa de referências** — busca por tags, parte do corpo, ângulo e
       tipo de pose sobre a biblioteca 2D.
+      
 - [ ] **Adicionar referências manualmente** — envio de imagens pela comunidade, com tags
       e atribuição de autoria, para o acervo crescer de forma colaborativa. É o primeiro
       recurso que exige de fato o backend: upload, armazenamento, moderação e
       persistência das tags.
+      
 - [ FEITO ] **Mais juntas no manequim** — pescoço separado da cabeça, coluna em dois ou três
       segmentos, pulsos, tornozelos, clavículas e dedos simplificados, para poses com
       leitura anatômica melhor.
+  
 - [ ] **Personalização do manequim** — proporções ajustáveis (altura, largura de ombro e
       quadril, comprimento de membros), tipos de corpo, alternância entre manequim
       simplificado e malha mais anatômica.
+      
+- [ FEITO ] Criação de conta, login, perfis.
+- 
 - [ ] **Deploy** — publicar a aplicação, com build do frontend servido pelo Nest e
       pipeline de deploy automatizado.
 
