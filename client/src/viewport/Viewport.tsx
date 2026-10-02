@@ -1,6 +1,14 @@
 import { useState } from 'react'
 import { Canvas } from '@react-three/fiber'
 import { ContactShadows, Grid, OrbitControls } from '@react-three/drei'
+import {
+  MIN_PANEL,
+  MIN_STAGE,
+  PANEL_INSET,
+  readLayoutSizes,
+  writeLayoutSizes,
+} from '../layout/layoutSizes'
+import { useDragSize } from '../layout/useDragSize'
 import { Mannequin } from './Mannequin'
 import { PosePanel } from './PosePanel'
 import { usePose } from './usePose'
@@ -8,13 +16,25 @@ import { useSavedPoses } from './useSavedPoses'
 
 const GROUND = -0.92
 
+const defaultPanel = () => readLayoutSizes().panel ?? 220
+
 export function Viewport() {
   const { pose, hands, lift, selected, rotate, setHand, select, apply, restore, reset } = usePose()
   const { entries, save, remove } = useSavedPoses()
   const [fineJoints, setFineJoints] = useState(false)
 
+  const panel = useDragSize({
+    axis: 'y',
+    min: MIN_PANEL,
+    max: (container) => Math.max(MIN_PANEL, container - MIN_STAGE),
+    initial: defaultPanel,
+    invert: true,
+    inset: PANEL_INSET,
+    onCommit: (height) => writeLayoutSizes({ panel: height }),
+  })
+
   return (
-    <div className="viewport">
+    <div className="viewport" ref={panel.containerRef}>
       <Canvas
         shadows
         dpr={[1, 2]}
@@ -67,6 +87,10 @@ export function Viewport() {
       </Canvas>
 
       <PosePanel
+        height={panel.size}
+        isResizing={panel.isDragging}
+        onResizeStart={panel.startDrag}
+        onResizeToggle={panel.toggle}
         selected={selected}
         fineJoints={fineJoints}
         onFineJoints={setFineJoints}

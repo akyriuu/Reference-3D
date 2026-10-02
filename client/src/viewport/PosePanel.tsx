@@ -3,6 +3,10 @@ import type { SavedPose } from './savedPoses'
 import { PRESETS, SKELETON, type HandId, type HandPose, type JointName, type PresetName } from './skeleton'
 
 type Props = {
+  height: number
+  isResizing: boolean
+  onResizeStart: (event: React.PointerEvent<HTMLElement>) => void
+  onResizeToggle: () => void
   selected: JointName | null
   fineJoints: boolean
   onFineJoints: (value: boolean) => void
@@ -30,6 +34,10 @@ const SLIDERS: { key: keyof HandPose; label: string }[] = [
 ]
 
 export function PosePanel({
+  height,
+  isResizing,
+  onResizeStart,
+  onResizeToggle,
   selected,
   fineJoints,
   onFineJoints,
@@ -57,70 +65,81 @@ export function PosePanel({
   }
 
   return (
-    <div className="pose-panel">
-      <div className="pose-presets">
-        {ORDER.map((preset) => (
-          <button key={preset} onClick={() => onApply(preset)}>
-            {PRESETS[preset].label}
-          </button>
-        ))}
-        <button onClick={onReset}>Zerar</button>
-        <button
-          className={fineJoints ? 'is-active' : ''}
-          onClick={() => onFineJoints(!fineJoints)}
-        >
-          Juntas finas
-        </button>
-      </div>
+    <div className={`pose-panel${isResizing ? ' is-resizing' : ''}`} style={{ height }}>
+      <div
+        className="pose-panel-handle"
+        onPointerDown={onResizeStart}
+        onDoubleClick={onResizeToggle}
+        role="separator"
+        aria-orientation="horizontal"
+        title="Arraste para redimensionar · duplo clique para recolher"
+      />
 
-      <form className="pose-save" onSubmit={submit}>
-        <input
-          type="text"
-          value={name}
-          maxLength={48}
-          placeholder="Nome da pose"
-          onChange={(event) => {
-            setName(event.target.value)
-            setNotice(null)
-          }}
-        />
-        <button type="submit">Salvar</button>
-      </form>
-
-      {saved.length > 0 && (
-        <ul className="pose-saved">
-          {saved.map((entry) => (
-            <li key={entry.id}>
-              <button className="pose-saved-name" onClick={() => onRestore(entry)}>
-                {entry.name}
-              </button>
-              <button className="pose-saved-remove" onClick={() => onRemove(entry.id)}>
-                Apagar
-              </button>
-            </li>
+      <div className="pose-panel-body">
+        <div className="pose-presets">
+          {ORDER.map((preset) => (
+            <button key={preset} onClick={() => onApply(preset)}>
+              {PRESETS[preset].label}
+            </button>
           ))}
-        </ul>
-      )}
+          <button onClick={onReset}>Zerar</button>
+          <button
+            className={fineJoints ? 'is-active' : ''}
+            onClick={() => onFineJoints(!fineJoints)}
+          >
+            Juntas finas
+          </button>
+        </div>
 
-      <div className="pose-hands">
-        {(['handR', 'handL'] as HandId[]).map((id) => (
-          <div key={id} className="pose-hand">
-            <span>{HAND_LABEL[id]}</span>
-            {SLIDERS.map(({ key, label }) => (
-              <label key={key}>
-                {label}
-                <input
-                  type="range"
-                  min={0}
-                  max={1}
-                  step={0.01}
-                  value={hands[id][key]}
-                  onChange={(event) => onHand(id, { [key]: Number(event.target.value) })}
-                />
-              </label>
+        <form className="pose-save" onSubmit={submit}>
+          <input
+            type="text"
+            value={name}
+            maxLength={48}
+            placeholder="Nome da pose"
+            onChange={(event) => {
+              setName(event.target.value)
+              setNotice(null)
+            }}
+          />
+          <button type="submit">Salvar</button>
+        </form>
+
+        {saved.length > 0 && (
+          <ul className="pose-saved">
+            {saved.map((entry) => (
+              <li key={entry.id}>
+                <button className="pose-saved-name" onClick={() => onRestore(entry)}>
+                  {entry.name}
+                </button>
+                <button className="pose-saved-remove" onClick={() => onRemove(entry.id)}>
+                  Apagar
+                </button>
+              </li>
             ))}
-          </div>
-        ))}
+          </ul>
+        )}
+
+        <div className="pose-hands">
+          {(['handR', 'handL'] as HandId[]).map((id) => (
+            <div key={id} className="pose-hand">
+              <span>{HAND_LABEL[id]}</span>
+              {SLIDERS.map(({ key, label }) => (
+                <label key={key}>
+                  {label}
+                  <input
+                    type="range"
+                    min={0}
+                    max={1}
+                    step={0.01}
+                    value={hands[id][key]}
+                    onChange={(event) => onHand(id, { [key]: Number(event.target.value) })}
+                  />
+                </label>
+              ))}
+            </div>
+          ))}
+        </div>
       </div>
 
       <p className="pose-status">
